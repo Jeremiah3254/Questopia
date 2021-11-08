@@ -7,7 +7,7 @@ public class MapGeneration : MonoBehaviour
     public GameObject[] Terrain;
     Transform parent;
     public int bottomBorder;
-    int CurrentRow;
+    public int CurrentRow;
     
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class MapGeneration : MonoBehaviour
                     Terrain[i].transform.localScale = new Vector3(1,((((Terrain[i-1].transform.localScale.y)+(Terrain[i-bottomBorder].transform.localScale.y))/2)+1),1);// change 1 to Random.Range(1,2)
                 }
                 Terrain[i].layer = 6;
-                Terrain[i].GetComponent<Renderer>().material.color = new Color(0,1f,0);   
+                //Terrain[i].GetComponent<Renderer>().material.color = new Color(0,1f,0);   
             }else {
                 Terrain[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 Terrain[i].transform.position = new Vector3(CurrentRow,0,(bottomBorder*CurrentRow)-i);
@@ -38,7 +38,7 @@ public class MapGeneration : MonoBehaviour
                     Terrain[i].transform.localScale = new Vector3(1,Random.Range(1f,3f),1);
                 }
                 Terrain[i].layer = 6;
-                Terrain[i].GetComponent<Renderer>().material.color = new Color(0,1f,0);
+                //Terrain[i].GetComponent<Renderer>().material.color = new Color(0,1f,0);
             }
             Terrain[i].transform.SetParent(parent);
             //insert any preset block height

@@ -5,12 +5,12 @@ using UnityEngine;
 public class EnemyMap : MonoBehaviour
 {
     public GameObject[] enemyVariations;
-    public GameObject[] enemies;
+    public GameObject[] mobs;
         void Start()
     {
-        enemies = new GameObject[50];
+        mobs = new GameObject[50];
         //Add enemies here
-        Instantiate(enemyVariations[0], new Vector3(15,10,-15), enemyVariations[0].transform.rotation);
+        mobs[0] = Instantiate(enemyVariations[0], new Vector3(2,10,-15), enemyVariations[0].transform.rotation);
         //Add enemies here
 
         
