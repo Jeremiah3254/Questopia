@@ -7,32 +7,47 @@ using UnityEngine;
 public class EnemyEncounter : MonoBehaviour
 {
     bool enemyEncountered;
-    public GameObject[] enemiesC;
+    GameObject[] terrain;
+    GameObject[] enemiesC;
+    public GameObject currentOpponent;
     // Start is called before the first frame update
     void Start()
     {
         //Enemies = new GameObject[50];
         Vector3[] TerrainScales = new Vector3[37];//37 blocks
+        terrain = GameObject.Find("Terrain").GetComponent<MapGeneration>().Terrain;
         //Terrain Layout
-        GameObject map = GameObject.Find("Terrain");
-        MapGeneration mapTerrain = map.GetComponent<MapGeneration>();
-        GameObject[] terrain = mapTerrain.Terrain;
-        //Terrain Layout
-
-        //Enemies
-        /*GameObject EnemyMapHolder = GameObject.Find("Enemies");
-        EnemyMap yep = EnemyMapHolder.GetComponent<EnemyMap>();
-        enemiesC = yep.mobs;*/
         enemiesC = GameObject.Find("Enemies").GetComponent<EnemyMap>().mobs;
-        //Enemies
     }
 
     // Update is called once per frame
     void Update()
     {
-        //for (int i = 0; i < Enemies.Length; i++) {
-            float dist = Vector3.Distance(transform.position, enemiesC[0].transform.position);
-            //Debug.Log(Enemies[1].transform.position);
-        //}
+        //refreshVariables();
+        for (int i = 0; i < enemiesC.Length; i++) {
+            if (enemiesC[i] != null) {
+                float dist = Vector3.Distance(enemiesC[i].transform.position,transform.position);
+                if (dist <= 3) {
+                    currentOpponent = enemiesC[i];
+                    createMap();
+                    Destroy(enemiesC[i]);
+                }
+            }
+        }
     }
+
+    public void createMap() {
+        int mapStartingPoint = (int) Mathf.Abs((((Mathf.Abs(Mathf.Floor(transform.localPosition.x))/*+1*/)*100)+(Mathf.Abs((Mathf.Floor(transform.localPosition.z))))));
+        Debug.Log(mapStartingPoint);
+        Debug.Log(terrain[mapStartingPoint].transform.localPosition.x+","+terrain[mapStartingPoint].transform.localPosition.z);
+        terrain[mapStartingPoint].transform.localScale = new Vector3 (terrain[mapStartingPoint].transform.localScale.x,(terrain[mapStartingPoint].transform.localScale.y+24),terrain[mapStartingPoint].transform.localScale.z);
+        //Debug.Log(terrain[mapStartingPoint].transform.localScale.y);
+        
+    }
+
+    public void refreshVariables() {
+        terrain = GameObject.Find("Terrain").GetComponent<MapGeneration>().Terrain;
+        enemiesC = GameObject.Find("Enemies").GetComponent<EnemyMap>().mobs;
+    }
+
 }

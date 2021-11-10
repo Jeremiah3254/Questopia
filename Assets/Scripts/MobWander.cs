@@ -140,25 +140,25 @@ public class MobWander : MonoBehaviour
         //Debug.Log("bounds Entered");
         if (boundManagementOccurring == false) {
             if ((transform.position.x < outOfBounds)) {
-                Debug.Log("bound 1");
+                //Debug.Log("bound 1");
                 boundManagementOccurring = true;
                 StartWander = false;
                 StopCoroutine(wandering);
 
             }else if (transform.position.x > xBorder - outOfBounds) {
-                Debug.Log("bound 2"+ (transform.position)+"  "+xBorder+"-"+outOfBounds);
+                //Debug.Log("bound 2"+ (transform.position)+"  "+xBorder+"-"+outOfBounds);
                 boundManagementOccurring = true;
                 StartWander = false;
                 StopCoroutine(wandering);
 
             }else if (transform.position.z > -outOfBounds) {
-                Debug.Log("bound 3");
+                //Debug.Log("bound 3");
                 boundManagementOccurring = true;
                 StartWander = false;
                 StopCoroutine(wandering);
 
             }else if (transform.position.z < -zBorder + outOfBounds) {
-                Debug.Log("bound 4"+ (transform.position.z)+"  "+zBorder+"+"+outOfBounds);
+                //Debug.Log("bound 4"+ (transform.position.z)+"  "+zBorder+"+"+outOfBounds);
                 boundManagementOccurring = true;
                 StartWander = false;
                 StopCoroutine(wandering);
@@ -170,7 +170,7 @@ public class MobWander : MonoBehaviour
     public bool rotateToAngle(Vector3 desiredRotation) {
         transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, desiredRotation, Time.deltaTime);
         if ((transform.rotation.eulerAngles.y >= desiredRotation.y && transform.rotation.eulerAngles.y <= (desiredRotation.y+2f)) || (transform.rotation.eulerAngles.y <= desiredRotation.y && transform.rotation.eulerAngles.y >= (desiredRotation.y-2f))){
-            Debug.Log("true");
+            //Debug.Log("true");
             return true;
         }
         //Debug.Log("false"+transform.rotation.eulerAngles.y+" "+desiredRotation.y);

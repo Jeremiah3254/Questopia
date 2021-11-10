@@ -10,8 +10,7 @@ public class MapGeneration : MonoBehaviour
     public int CurrentRow;
     
     // Start is called before the first frame update
-    void Start()
-    {
+    void Awake() {
         CurrentRow = 0;
         Terrain = new GameObject[10000];
         for (int i = 0; i<Terrain.Length; i++) {
@@ -43,6 +42,11 @@ public class MapGeneration : MonoBehaviour
             Terrain[i].transform.SetParent(parent);
             //insert any preset block height
         }
+    }
+
+    void Start()
+    {
+        
     }
 
 

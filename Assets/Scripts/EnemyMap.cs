@@ -6,12 +6,16 @@ public class EnemyMap : MonoBehaviour
 {
     public GameObject[] enemyVariations;
     public GameObject[] mobs;
-        void Start()
+
+        void Awake() 
     {
         mobs = new GameObject[50];
         //Add enemies here
         mobs[0] = Instantiate(enemyVariations[0], new Vector3(2,10,-15), enemyVariations[0].transform.rotation);
         //Add enemies here
+    }
+        void Start()
+    {
 
         
     }
